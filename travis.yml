@@ -1,0 +1,6 @@
+language: java
+
+deploy:
+  provider: heroku
+  api_key: 46a89dc7-c0ee-4b08-8f27-b52262f3db18
+  app: expedia-test

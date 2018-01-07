@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Hotel Offers</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css"/>
+<script type="text/javascript">
+	$(document).ready(function() {
+		jQuery('#hotelForm').submit(function() {
+			$( "#errorMessage " ).empty();
+			$.ajax({
+				url : 'offers/v1/hotels',
+				type : 'GET',
+				data : $(this).serialize(),
+				success : function(response) {
+					draw(response);
+				},
+				error : function (response) {
+					var error = '<div class="alert alert-danger"><strong>Error!</strong> ' + response.responseText + '.</div>';
+				    $(error).appendTo(document.getElementById('errorMessage'));
+				}
+			});
+			return false;
+		});
+	});
+</script>
+</head>
+<body>
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+  		<h3>Expedia Exercise (Zaid Radi Khalil Abu-Ziad) Deployed using travis</h3> 
+    </div>
+  </div>
+</nav>
+	<div class="container">
+		<div class="row" id="errorMessage">
+			
+		</div>
+		<div class="row">
+			<form id="hotelForm" action="" method="POST">
+				<div class="row">
+					<div class="form-group col-md-4">
+						<label for="destinationName">Destination Name:</label> 
+						<input name="destinationName" type="text" class="form-control" id="destinationName">
+					</div>
+					<div class="form-group col-md-2">
+						<label for="lengthOfStay">Days to stay:</label> 
+						<input name="lengthOfStay" type="number" min="1" max="60" class="form-control" id="lengthOfStay">
+					</div>
+				</div>
+				<div class="row">
+					<div class="form-group col-md-2">
+						<label for="minTripStartDate">Min Trip Start Date:</label> 
+						<input name="minTripStartDate" type="date" min="1" max="5" class="form-control" id="minTripStartDate">
+					</div>
+					<div class="form-group col-md-2">
+						<label for="maxTripStartDate">Max Trip Start Date:</label> 
+						<input name="maxTripStartDate" type="date" min="1" max="5" class="form-control" id="maxTripStartDate">
+					</div>
+					<div class="form-group col-md-2">
+						<label for="minStarRating">Min Star Rating:</label> 
+						<input name="minStarRating" type="number" min="1" max="5" class="form-control" id="minStarRating" min="1" max="5">
+					</div>
+					<div class="form-group col-md-2">
+						<label for="maxStarRating">Max Star Rating:</label> 
+						<input name="maxStarRating" type="number" min="1" max="5" class="form-control" id="maxStarRating" min="1" max="5">
+					</div>
+				</div>
+				<div class="row">
+					<div class="form-group col-md-2">
+						<label for="minGuestRating">Min Guest Rating:</label> 
+						<input name="minGuestRating" type="number" min="1" max="5" class="form-control" id="minGuestRating" min="1" max="5">
+					</div>
+					<div class="form-group col-md-2">
+						<label for="maxGuestRating">Max Guest Rating:</label> 
+						<input name="maxGuestRating" type="number" min="1" max="5" class="form-control" id="maxGuestRating" min="1" max="5">
+					</div>
+					<div class="form-group col-md-2">
+						<label for="minTotalRate">Min Total Rate:</label> 
+						<input name="minTotalRate" type="number" min="1" max="5" class="form-control" id="minTotalRate" min="0">
+					</div>
+					<div class="form-group col-md-2">
+						<label for="maxTotalRate">Max Total Rate:</label> 
+						<input name="maxTotalRate" type="number" min="1" max="5" class="form-control" id="maxTotalRate" min="0">
+					</div>
+				</div>
+				<!-- <div>
+					<input name="scenario" type="text" value="deal-finder">
+					<input name="page" type="text" value="foo">
+					<input name="uid" type="text" value="foo">
+				</div> -->
+				<input type="submit" value="Search" class="btn-primary btn-lg" />
+			</form>
+		</div>
+		<div id="cardsUI" style="margin-top: 5%"></div>
+	</div>
+	<script type="text/javascript">
+	function draw(json) {
+		$( "#cardsUI " ).empty();
+
+		var hotels = json.offers.Hotel;
+		var arrayLength = hotels.length;
+		var ele = "";
+		var rowCount = 1;
+		for (var i = 0; i < arrayLength; i++) {
+			var offerStartRange = hotels[i].offerDateRange.travelStartDate;
+		    var offerEndRange = hotels[i].offerDateRange.travelEndDate;
+		    var lenghtOfStay = hotels[i].offerDateRange.lengthOfStay;
+		    var destination = hotels[i].destination.longName;
+		    var image = hotels[i].hotelInfo.hotelImageUrl;
+		    var hotelName = hotels[i].hotelInfo.hotelName;
+		    var hotelStarRating = hotels[i].hotelInfo.hotelStarRating;
+		    var hotelReviewTotal = hotels[i].hotelInfo.hotelReviewTotal;
+		    var hotelURL = hotels[i].hotelUrls.hotelInfositeUrl;
+		    var hotelSearchResultUrl = hotels[i].hotelUrls.hotelSearchResultUrl;
+		    var avgPrice = hotels[i].hotelPricingInfo.averagePriceValue;
+		    var currency = hotels[i].hotelPricingInfo.currency;
+		    var percentSavings = hotels[i].hotelPricingInfo.percentSavings;
+			var numberOfCardsPerRow = 3;
+			
+		    if (rowCount % numberOfCardsPerRow == 0) {
+		    	ele += "<div class='row'>"
+		    }
+
+		    stars = "";
+		    var filledCount = 0;
+		    for (var j = 0; j < hotelStarRating; j++) {
+		    	filledCount++;
+		    	stars += "<span class='glyphicon glyphicon-star'></span>"; 
+		    }
+		    for (var j = filledCount; j < 5; j++) {
+		    	stars += "<span class='glyphicon glyphicon-star-empty'></span>"; 
+		    }
+		    encodedHotelURL = decodeURIComponent(hotelURL);
+			ele += "<div class='thumbnail col-md-3' style='margin-right: 20px'><a href='" + encodedHotelURL + "'><img height='222' width='350' src='" + image + "' alt=''></a><div class='caption'><h4 class='pull-right'>" + avgPrice + " " + currency + "</h4><h4><a href='" + encodedHotelURL + "'>" + hotelName + "</a></h4><p>Destination: " + destination + "<br/>start date: " + offerStartRange + "<br/>end date:" + offerEndRange + "<br/> Days to stay:" + lenghtOfStay + " <br/><a target='_blank' href=' " + decodeURIComponent(hotelSearchResultUrl) + "'>See more on <b>Expedia</b></a>.</p></div><div class='ratings'><p class='pull-right'>Save " + percentSavings + " % </p><p> " + stars + " </p></div></div>";
+			if (rowCount % numberOfCardsPerRow == 0) {
+				ele += "</div>"
+				rowCount = 0;
+			}
+			rowCount++;
+		}
+		$(ele).appendTo(document.getElementById('cardsUI'));
+	}
+	</script>
+</body>
+</html>

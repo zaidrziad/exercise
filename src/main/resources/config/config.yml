@@ -1,0 +1,2 @@
+# offers API
+hotelsApi: ${api.hotel.offer}?scenario=deal-finder&page=foo&uid=foo&productType=Hotel

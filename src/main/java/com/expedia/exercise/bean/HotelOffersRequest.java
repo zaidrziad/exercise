@@ -19,8 +19,6 @@ public class HotelOffersRequest {
 			Float maxGuestRating, Integer minTotalRate, Integer maxTotalRate) {
 				
 				this.destinationName = destinationName;
-				this.minTripStartDate = minTripStartDate;
-				this.maxTripStartDate = maxTripStartDate;
 				this.lengthOfStay = lengthOfStay;
 				this.minStarRating = minStarRating;
 				this.maxStarRating = maxStarRating;
@@ -28,6 +26,8 @@ public class HotelOffersRequest {
 				this.maxGuestRating = maxGuestRating;
 				this.minTotalRate = minTotalRate;
 				this.maxTotalRate = maxTotalRate;
+				setMinTripStartDate(minTripStartDate);
+				setMaxTripStartDate(maxTripStartDate);
 	}
 
 	public HotelOffersRequest() {
@@ -46,6 +46,10 @@ public class HotelOffersRequest {
 	}
 
 	public void setMinTripStartDate(String minTripStartDate) {
+		
+		if (minTripStartDate != null && minTripStartDate.trim().isEmpty()) {
+			minTripStartDate = null;
+		}
 		this.minTripStartDate = minTripStartDate;
 	}
 
@@ -54,6 +58,10 @@ public class HotelOffersRequest {
 	}
 
 	public void setMaxTripStartDate(String maxTripStartDate) {
+		
+		if (maxTripStartDate != null && maxTripStartDate.trim().isEmpty()) {
+			maxTripStartDate = null;
+		}
 		this.maxTripStartDate = maxTripStartDate;
 	}
 

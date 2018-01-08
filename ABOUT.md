@@ -5,7 +5,7 @@
 		<ul>
 			<li>Java is powerful and fast to create services</li>
 			<li>I am fluent in Java so it is easier for me to do it fast</li>
-		</ol>
+		</ul>
 	</li>
 	<li>
 		<b>Thoughts about API</b>
@@ -13,7 +13,7 @@
 			<li>I assumed that the max stay days should be limited so I set the limit to 60</li>
 			<li>Could not find API documentation (i.e. swagger) I tried to find other parameters like lang but I could not :)</li>
 			<li>Unknown parameters will not be passed to the API</li>
-		</ol>
+		</ul>
 	</li>
 	<li>
 		<b>What want to accomplish</b>

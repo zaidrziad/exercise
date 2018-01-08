@@ -18,9 +18,9 @@
 	<li>
 		<b>What want to accomplish</b>
 		<ul>
-			<li>Hotel offers service that validates the request before sending it to the API, so the whole focus was to make sure the validation is correct.<li>
+			<li>Hotel offers service that validates the request before sending it to the API, so the whole focus was to make sure the validation is correct.</li>
 			<li>Controllers are not included in the test, I will try to add their test.</li>
-			<li>All exception error message are in format of XXX.XXX.XXX to make localization easier and cleaner, currently the application returns the error as it is.</li>
+			<li>Exception error messages are in format of XXX.XXX.XXX to make localization easier and cleaner, currently the application returns the error as it is.</li>
 		<ul>
 	</li>
 </ul>

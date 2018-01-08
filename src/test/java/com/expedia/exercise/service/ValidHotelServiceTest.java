@@ -82,6 +82,16 @@ public class ValidHotelServiceTest extends HotelServiceTest {
 	}
 	
 	@Test
+	public void checkGetOffersEmptyMinMaxTripStartDate() {
+
+		HotelOffersRequest hotelOffersRequest = new HotelOffersRequest();
+		hotelOffersRequest.setMinTripStartDate(" ");
+		hotelOffersRequest.setMaxTripStartDate(" ");
+		MockResponse(hotelOffersRequest.toString(), RESPONSE_TEST_CODE_200, Status.OK.getStatusCode());
+		Assert.assertNotNull(hotelService.getOffers(hotelOffersRequest));
+	}
+	
+	@Test
 	public void testGetOffersWithValidMinStarRating() throws ExerciseException {
 
 		checkGetOffersWithValidMinStarRating(1f);

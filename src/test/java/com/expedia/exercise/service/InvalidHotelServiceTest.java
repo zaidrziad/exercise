@@ -46,10 +46,6 @@ public class InvalidHotelServiceTest extends HotelServiceTest {
 		checkGetOffersWithInvalidMinMaxTripStartDate("asd", null, INVALID_MIN_MAX_STAR_RATING_FORMAT);
 	}
 	
-	public void testGetOffersWithEmptyStringMinTripStartDate() throws ExerciseException {
-		checkGetOffersWithInvalidMinMaxTripStartDate(" ", null, INVALID_MIN_MAX_STAR_RATING_FORMAT);
-	}
-	
 	@Test
 	public void testGetOffersWithNumericMaxTripStartDate() throws ExerciseException {
 		checkGetOffersWithInvalidMinMaxTripStartDate(null, "123", INVALID_MIN_MAX_STAR_RATING_FORMAT);
@@ -58,11 +54,6 @@ public class InvalidHotelServiceTest extends HotelServiceTest {
 	@Test
 	public void testGetOffersWithStringMaxTripStartDate() throws ExerciseException {
 		checkGetOffersWithInvalidMinMaxTripStartDate(null, "asd", INVALID_MIN_MAX_STAR_RATING_FORMAT);
-	}
-	
-	@Test
-	public void testGetOffersWithEmptyStringMaxTripStartDate() throws ExerciseException {
-		checkGetOffersWithInvalidMinMaxTripStartDate(null, " ", INVALID_MIN_MAX_STAR_RATING_FORMAT);
 	}
 	
 	@Test

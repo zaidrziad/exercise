@@ -11,7 +11,9 @@
 <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css"/>
 <script type="text/javascript">
 	$(document).ready(function() {
+		
 		jQuery('#hotelForm').submit(function() {
+			$( "#cardsUI " ).empty();
 			$( "#errorMessage " ).empty();
 			$.ajax({
 				url : 'offers/v1/hotels',
